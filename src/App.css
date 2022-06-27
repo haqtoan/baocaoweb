@@ -1,0 +1,296 @@
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bg-footer {
+    background: rgb(72, 226, 72);
+}
+
+.logo-img {
+    height: 48px;
+}
+
+.content-steps {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #2f3035;
+    margin-top: 1rem;
+}
+
+
+/* AppHome */
+
+.section-1 {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    background-image: url("https://isofhcare-backup.s3-ap-southeast-1.amazonaws.com/images/dat-kham-online-isofhcare-jpg_0ceb2132_8202_47cc_af61_c1b7a092084d.png");
+    height: 500px;
+}
+
+.wrap-text {
+    gap: 40px;
+}
+
+.section-h1 {
+    width: 45%;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 56px;
+    white-space: pre-wrap;
+}
+
+.section-h3 {
+    width: 600px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(20, 36, 65);
+}
+
+.ant-row {
+    flex-flow: row wrap;
+    row-gap: 20px !important;
+    margin-left: -4rem;
+    margin-right: -4rem;
+}
+
+.ant-col {
+    text-align: center;
+    height: auto;
+    gap: 16px;
+    position: relative;
+    max-width: 25%;
+    min-height: 1px;
+    flex: 0 0 25%;
+}
+
+.hot-service-item {
+    padding: 16px 16px 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    height: 357px;
+    margin: 0 12px;
+}
+
+.hot-service-item-box {
+    flex-direction: column;
+}
+
+.image {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-box {
+    box-sizing: border-box;
+}
+
+.image-box-content {
+    visibility: hidden;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.header {
+    padding-right: 221px;
+}
+
+.container-hot-service {
+    padding-left: 10rem;
+    margin-bottom: 98px;
+    padding-top: 41px;
+}
+
+.body {
+    margin-top: 28px;
+    margin-left: -15px;
+}
+
+.multi-track {
+    list-style: none;
+    flex-direction: row;
+}
+
+.multi-item {
+    width: 370px;
+}
+
+.logo {
+    width: 180px;
+    height: auto;
+    border-radius: 100%;
+    min-height: 180px;
+}
+
+.avatar {
+    width: 180px;
+    height: auto;
+    border-radius: 100%;
+    max-height: 180px;
+}
+
+.info {
+    flex-direction: column;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgb(47, 48, 53);
+    cursor: pointer;
+    text-align: center;
+}
+
+.specializations {
+    background: rgba(49, 97, 173, 0.1);
+    border-radius: 4px;
+    text-align: center;
+    padding: 2px 8px;
+}
+
+.price-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    flex: 1 1 0%;
+    color: rgb(47, 48, 53);
+    margin-right: 8px;
+    min-width: 68px;
+    margin-bottom: 4px;
+}
+
+.btn-footer {
+    margin-top: auto;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    background: linear-gradient(79.98deg, rgb(76, 196, 139) 26.18%, rgb(68, 161, 152) 99.22%);
+    border-radius: 0px 0px 4px 4px;
+}
+
+.btn-footer-card {
+    background: linear-gradient(79.98deg, rgb(76, 196, 139) 26.18%, rgb(68, 161, 152) 99.22%);
+    border-radius: 0px 0px 4px 4px;
+    color: white;
+    border: none;
+}
+
+.price-number {
+    font-size: 30px;
+    line-height: 18px;
+    color: #3161ad;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.specialize {
+    flex: 0 0 auto;
+    max-width: 100%;
+    min-height: 22px;
+    background: #dee6f2;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #2f3035;
+    padding: 2px 8px;
+}
+
+.time-booking {
+    background-color: #ffecd6;
+}
+
+.head-time-picker {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    gap: 43px;
+}
+
+.label-time-picker {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.doctor-exp {
+    background: #ffffff;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 0px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+}
+
+.text-content {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+
+/* admin */
+
+.admin-left-col {
+    background-color: #212529;
+    min-height: 700px;
+    color: white;
+    padding-right: 0;
+}
