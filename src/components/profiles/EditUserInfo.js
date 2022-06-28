@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 
 function EditUserInfo() {
-    const { id } = useParams;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");

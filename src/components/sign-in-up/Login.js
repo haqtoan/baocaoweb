@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-    const baseURL = "https://localhost:8084/User/login"
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [usernameError, setUsernameError] = useState("");
+
+    let navigate = useNavigate();
 
     const handleValidation = (event) => {
         let formIsValid = true;
@@ -39,10 +40,23 @@ function Login() {
         handleValidation();
         console.log(username + " " + password);
         axios
-            .post('/login', {
-                username: username,
+            .post('http://localhost:8084/User/login', {
+                userName: username,
                 password: password
             })
+            .then((res) => {
+                console.log(res);
+                if (res.data.data == null) {
+                    navigate("/login");
+                    localStorage.removeItem("accessToken");
+                    alert("Tên đăng nhập hoặc mật khẩu không đúng");
+
+                } else {
+                    navigate("/");
+                    localStorage.setItem("accessToken", JSON.stringify(res.data.data))
+                }
+            })
+            .catch((err) =>console.log(err));
     };
 
     return (
@@ -87,12 +101,9 @@ function Login() {
                             />
                         </Form.Group>
                         <div className="text-center">
-                            <Link to={username.id}>
-                                <Button type="submit" className="btn btn-primary">
-                                    Submit
-                                </Button>
-                            </Link>
-
+                            <Button type="submit" className="btn btn-primary">
+                                Đăng nhập
+                            </Button>
                         </div>
                     </Form>
                 </div>
