@@ -1,16 +1,16 @@
 import { Container, Button, Form } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 function EditUserInfo() {
+    const baseURL = "https:localhost:3000/users"
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
-    const [sex, setSex] = useState(true);
     const [address, setAddress] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -92,23 +92,22 @@ function EditUserInfo() {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleValidation();
-        console.log(username + password + name + phoneNumber + email + dateOfBirth + sex + address)
+        console.log(username + password + name + phoneNumber + email + dateOfBirth + address)
         axios
-            .put(`http://localhost:8084/User/update/1`, {
+            .post(`${baseURL}`, {
                 username: username,
                 password: password,
-                fullName: name,
+                name: name,
                 phoneNumber: phoneNumber,
                 email: email,
-                birth: dateOfBirth,
-                sex: sex,
+                dateOfBirth: dateOfBirth,
                 address: address
             })
-            .then((res) => console.log(res.data))
+            .then((res) => console.log(res))
             .catch((error) => console.log(error)
             );
     };
-
+    
     return (
         <Container>
             <div className="flex-row">
@@ -161,11 +160,6 @@ function EditUserInfo() {
                             <small className="text-danger form-text">
                                 {dateOfBirthError}
                             </small>
-                        </Form.Group>
-                        <Form.Group className="col-md-12 mb-3">
-                            <Form.Label>Giới tính: </Form.Label>
-                            <Form.Check type="radio" onChange={() => setSex(true)} name="sex" label="Nam" />
-                            <Form.Check type="radio" onChange={() => setSex(false)} name="sex" label="Nữ" />
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Địa chỉ</Form.Label>

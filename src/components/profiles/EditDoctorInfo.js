@@ -4,13 +4,13 @@ import { useState, useParams } from "react";
 import axios from "axios";
 
 function EditDoctorInfo() {
+    const baseURL = "https:localhost:3000/users"
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
-    const [sex, setSex] = useState(true);
     const [address, setAddress] = useState("");
     const [specialty, setSpecialty] = useState("");
     const [exp, setExp] = useState("");
@@ -117,15 +117,16 @@ function EditDoctorInfo() {
         handleValidation();
         console.log(username + password + name + phoneNumber + email + dateOfBirth + address)
         axios
-            .put(`https://localhost:8084/User/update/${id}`, {
+            .put(`${baseURL}/${id}`, {
                 username: username,
                 password: password,
-                fullName: name,
+                name: name,
                 phoneNumber: phoneNumber,
                 email: email,
-                birth: dateOfBirth,
-                sex: sex,
-                address: address
+                dateOfBirth: dateOfBirth,
+                address: address,
+                specialty: specialty,
+                exp: exp
             })
             .then((res) => console.log(res))
             .catch((error) => console.log(error)
@@ -184,11 +185,6 @@ function EditDoctorInfo() {
                             <small className="text-danger form-text">
                                 {dateOfBirthError}
                             </small>
-                        </Form.Group>
-                        <Form.Group className="col-md-12 mb-3">
-                            <Form.Label>Giới tính: </Form.Label>
-                            <Form.Check type="radio" onChange={() => setSex(true)} name="sex" label="Nam" />
-                            <Form.Check type="radio" onChange={() => setSex(false)} name="sex" label="Nữ" />
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Địa chỉ</Form.Label>

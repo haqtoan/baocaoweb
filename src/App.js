@@ -18,10 +18,8 @@ import ServiceList from './components/services/ServiceList';
 import ServiceDetail from './components/services/ServiceDetail';
 import EditUserInfo from './components/profiles/EditUserInfo';
 import BookingInfo from './components/services/BookingInfo';
-import { useState } from 'react';
 
 function App() {
-
   return (
     <div className="App">
       <AppHeader />
@@ -42,7 +40,7 @@ function App() {
 
         <Route path='/user/info' element={<UserInfo />} />
 
-        <Route path='/user/info/edit/' element={<EditUserInfo />} />
+        <Route path='/user/info/edit' element={<EditUserInfo />} />
 
         <Route path='/user/calendar' element={<UserCalendar />} />
 

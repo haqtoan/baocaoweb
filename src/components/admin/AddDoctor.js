@@ -18,7 +18,7 @@ function AddDoctor() {
         console.log(username + password);
 
         axios
-            .post(`http://localhost:8084/User/register/`, {
+            .post(`/add-doctor`, {
                 username: username,
                 password: password,
                 name: name,

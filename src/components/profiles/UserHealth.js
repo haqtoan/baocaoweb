@@ -4,12 +4,13 @@ import { useState, useParams, useEffect } from "react";
 import axios from "axios";
 
 function UserHealth() {
+    const baseURL = "https:localhost:3000/users"
     const { id } = useParams();
     const [user, setUser] = useState([]);
 
     const userHealth = () => {
         axios
-        .get(`http://localhost:8084/Health/getById/5`)
+        .get(`${baseURL}/${id}`)
         .then((res) => {
             setUser(res.data);
         })

@@ -9,7 +9,7 @@ function DoctorInfo() {
 
     const doctorInfo = (id) => {
         axios
-            .get(`http://localhost:8084`)
+            .get(`${baseURL}/${id}`)
             .then((res) => {
                 setDoctor(res.data);
             })

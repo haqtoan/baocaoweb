@@ -9,7 +9,7 @@ function DoctorDetail() {
 
     const doctorInfo = () => {
         axios
-        .get(`http://localhost:8084/Department/getById/${id}`)
+        .get(`${baseURL}/${id}`)
         .then((res) => {
             setDoctor(res.data);
         })
@@ -41,7 +41,7 @@ function DoctorDetail() {
                             </div>
                         </div>
                         <div className="d-flex">
-                            <div className="specialize">{doctor.title}</div>
+                            <div className="specialize">{doctor.specialty}</div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ function DoctorDetail() {
             <Container className="mx-3 mt-3 mb-4 doctor-exp">
                 <h4 className="mb-3">Kinh nghiệm khám chữa bệnh</h4>
                 <pre className="text-content">
-                    {doctor.detal}
+                    {doctor.exp}
                 </pre>
             </Container>
         </Container>

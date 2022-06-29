@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function Login() {
     const [password, setPassword] = useState("");
@@ -102,7 +102,7 @@ function Login() {
                         </Form.Group>
                         <div className="text-center">
                             <Button type="submit" className="btn btn-primary">
-                                Đăng nhập
+                                Submit
                             </Button>
                         </div>
                     </Form>

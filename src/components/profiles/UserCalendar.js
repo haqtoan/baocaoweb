@@ -14,7 +14,9 @@ function UserCalendar() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8084/TimeOrder/getAllTimeOrderByUserId/5`)
+            .get(`/user/calendar/1`, {
+                
+            })
             .then(res => setAppointment(res.data))
             .catch(error => console.log(error));
     }, []);
@@ -23,7 +25,7 @@ function UserCalendar() {
         <Container className="w-50 h-100 justify-content-center d-flex position-relative flex-column mt-2">
             <h2 className="mx-5 text-center">Lịch sử đặt khám</h2>
             {/* {appointment?.map((item) => ( */}
-                <Card key={appointment.id}>
+                <Card key={appointment1.id}>
                     <Card.Header>{appointment1.appointmentHour}, {appointment1.appointmentDay}</Card.Header>
                     <Card.Body>
                         <Card.Text>

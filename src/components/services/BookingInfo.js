@@ -18,10 +18,7 @@ function BookingInfo() {
         console.log(bookInfo.name + bookInfo.appointmentHour+ bookInfo.appointmentDay + bookInfo.content + bookInfo.price + symptom);
 
         axios
-            .post('http://localhost:8084/TimeOrder/createTimeOrder', {
-                time:"2022-12-12",
-                symptom: symptom
-            })
+            .post('/dat-lich/thong-tin-dat-lich', bookInfo)
             .then((res) => console.log(res))
             .catch((error) => console.log(error)
             );

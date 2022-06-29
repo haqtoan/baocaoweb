@@ -1,15 +1,14 @@
 import { Container, Card, Button } from "react-bootstrap"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function DoctorCalendar() {
-    const {id} = useParams;
-    const [calendar, setCalendar] = useState(null);
+    const [calendar, setCalendar] = useState("");
 
-    const doctorCalendar = () => {
+    const doctorCalendar = (id) => {
         axios
-            .get(`http://localhost:8084/TimeWork/getAllByIdDoctor/1`)
+            .get(`doctor/calendar/${id}`)
             .then((res) => {
                 setCalendar(res.data)
             })
@@ -26,16 +25,16 @@ function DoctorCalendar() {
                 <h2>Lịch khám hôm nay</h2>
             </div>
             <Container className="mt-5 w-75 h-25">
-                {/* {calendar?.map((cal) => ( */}
-                    <Card key={calendar.id}>
-                        <Card.Header as="h5">{calendar.time}</Card.Header>
+                {calendar?.map((cal) => (
+                    <Card>
+                        <Card.Header as="h5">{cal.appointmentHour}, {cal.customerName}</Card.Header>
                         <Card.Body>
-                            <Card.Title>Khách hàng:</Card.Title>
+                            <Card.Title>Khách hàng: {cal.customerName}</Card.Title>
                             <Card.Text>
-                                Giờ khám: 
+                                Giờ khám: {cal.appointmentHour}
                             </Card.Text>
                             <Card.Text>
-                                Triệu chứng:
+                                Triệu chứng: {cal.symptom}
                             </Card.Text>
                             <Button>
                                 <Link to={'/user-health'}>
@@ -44,7 +43,7 @@ function DoctorCalendar() {
                             </Button>
                         </Card.Body>
                     </Card>
-                {/* ))} */}
+                ))}
             </Container>
         </Container>
     )

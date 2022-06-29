@@ -3,6 +3,7 @@ import { useState, useEffect, useParams } from "react";
 import axios from "axios";
 
 function AddNewRecord() {
+    const baseURL = "https:localhost:3000/users"
     const { id } = useParams();
     const [user, setUser] = useState([]);
     const [symptom, setSymptom] = useState("");
@@ -13,7 +14,7 @@ function AddNewRecord() {
         e.preventDefault();
 
         axios
-            .post(`http://localhost:8084/1/1/1`, {
+            .post(`/add-doctor`, {
                 symptom: symptom,
                 treatments: treatments,
                 medicalCheckUpDate: medicalCheckUpDate
@@ -25,7 +26,7 @@ function AddNewRecord() {
 
     useEffect(() => {
         axios
-        .get(`http://localhost:8084/${id}`)
+        .get(`${baseURL}/${id}`)
         .then((res) => {
             setUser(res.data)
         })
