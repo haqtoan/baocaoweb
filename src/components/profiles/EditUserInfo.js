@@ -143,7 +143,12 @@ function EditUserInfo() {
     return (
         <Container>
             <div className="flex-row">
-                <Link to={"/"}>Trang chủ</Link> / Thông tin cá nhân / Sửa thông tin cá nhân
+                <Link to={"/"}>Trang chủ</Link>
+                {" "}/{" "}
+                <Link to={"/user/info"}>
+                    Thông tin cá nhân
+                </Link>
+                {" "}/ Sửa thông tin cá nhân
             </div>
             <div className="text-center">
                 <h2>SỬA THÔNG TIN CÁ NHÂN</h2>
@@ -175,8 +180,8 @@ function EditUserInfo() {
                         <Form.Group className="col-md-12 mb-3 blog-checkbox">
                             <Form.Label>Giới tính: </Form.Label>
                             <div className="d-flex">
-                                <Form.Check className="me-3" type="radio" defaultValue={user.sex ? true : false} label="Nam" />
-                                <Form.Check className="me-3" type="radio" defaultValue={user.sex ? false : true} label="Nữ" />
+                                <Form.Check className="me-3" type="radio" defaultChecked={user.sex ? true : false} label="Nam" />
+                                <Form.Check className="me-3" type="radio" defaultChecked={user.sex ? false : true} label="Nữ" />
                             </div>
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">

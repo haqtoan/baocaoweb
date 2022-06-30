@@ -1,24 +1,27 @@
 import { Button, Container, Form } from "react-bootstrap";
-import { useState, useEffect, useParams } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
 
 function DoctorDetail() {
-    const baseURL = "https:localhost:3000/users"
     const { id } = useParams();
-    const [doctor, setDoctor] = useState([]);
-
-    const doctorInfo = () => {
-        axios
-        .get(`${baseURL}/${id}`)
-        .then((res) => {
-            setDoctor(res.data);
-        })
-        .catch((error) => console.log(error));
-    }
+    const [doctor, setDoctor] = useState(null);
 
     useEffect(() => {
         doctorInfo();
     }, []);
+
+    const doctorInfo = () => {
+        axios
+        .get(`http://localhost:8084/User/getDoctorById/${id}`)
+        .then((res) => {
+            setDoctor(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((error) => console.log(error));
+    }
+    
+    console.log("ádasdasdasd");
     
     return (
         <Container className="py-6">
@@ -32,16 +35,16 @@ function DoctorDetail() {
                 </div>
                 <div className="doctor-text p-4">
                     <div className="doctor-text-head d-flex">
-                        <h1 className="mb-3">{doctor.name}</h1>
+                        <h1 className="mb-3">{doctor.fullName}</h1>
                     </div>
                     <div className="doctor-text-more d-flex flex-column">
                         <div className="price-info mb-4">
                             <div className="text-align-center d-flex align-items-center justify-content-start">
-                                <span className="price-number">{doctor.price}đ</span>
+                                <span className="price-number">500000đ</span>
                             </div>
                         </div>
                         <div className="d-flex">
-                            <div className="specialize">{doctor.specialty}</div>
+                            <div className="specialize">{doctor.department.title}</div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +67,7 @@ function DoctorDetail() {
             <Container className="mx-3 mt-3 mb-4 doctor-exp">
                 <h4 className="mb-3">Kinh nghiệm khám chữa bệnh</h4>
                 <pre className="text-content">
-                    {doctor.exp}
+                    {doctor.department.detail}
                 </pre>
             </Container>
         </Container>

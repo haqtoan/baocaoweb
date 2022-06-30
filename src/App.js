@@ -32,7 +32,7 @@ function App() {
 
         <Route path='/bac-si' element={<DoctorList />} />
 
-        <Route path='/bac-si/chi-tiet' element={<DoctorDetail />} />
+        <Route path='/bac-si/chi-tiet/:id' element={<DoctorDetail />} />
 
         <Route path='/dich-vu' element={<ServiceList />} />
 
