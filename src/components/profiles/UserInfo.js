@@ -28,18 +28,16 @@ function UserInfo() {
                             <Form.Control type="text" value={user.username} disabled />
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
-                            <Form.Label>Mật khẩu</Form.Label>
-                            <Form.Control type="text" value={user.password} disabled />
-                        </Form.Group>
-                        <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Họ tên</Form.Label>
                             <Form.Control type="text" value={user.fullName} disabled />
                         </Form.Group>
-                        <Form.Group className="col-md-12 mb-3 blog-checkbox" controlId="formBasicCheckbox" >
-                                <Form.Label className='mx-3'>Giới tính: </Form.Label>
-                                <Form.Check className="me-3" type="radio" value={user.sex ? false : true} label="Nam" />
-                                <Form.Check className="me-3" type="radio" value={user.sex ? true : false} label="Nữ" />
-                            </Form.Group>
+                        <Form.Group className="col-md-12 mb-3 blog-checkbox">
+                            <Form.Label>Giới tính: </Form.Label>
+                            <div className="d-flex">
+                                <Form.Check className="me-3" type="radio" checked={user.sex === true} label="Nam" readOnly/>
+                                <Form.Check className="me-3" type="radio" checked={user.sex === false} label="Nữ" readOnly />
+                            </div>
+                        </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Số điện thoại</Form.Label>
                             <Form.Control type="number" value={user.phoneNumber} disabled />

@@ -7,6 +7,7 @@ function EditUserInfo() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+    const [sex, setSex] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
@@ -29,16 +30,19 @@ function EditUserInfo() {
             setUser(user);
         }
 
+        setUsername(user.username);
         setPassword(user.password);
         setName(user.fullName);
+        setSex(user.sex);
         setPhoneNumber(user.phoneNumber);
         setEmail(user.email);
         setDateOfBirth(user.birth);
-
+        setAddress(user.address);
     }, []);
 
+    let formIsValid = true;
+
     const handleValidation = () => {
-        let formIsValid = true;
 
         if (!username) {
             formIsValid = false;
@@ -109,27 +113,33 @@ function EditUserInfo() {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleValidation();
-        console.log(username + password + name + phoneNumber + email + dateOfBirth + address)
+        console.log(username + password + name + phoneNumber + email + dateOfBirth + address);
         axios
             .put(`http://localhost:8084/User/update/${user.id}`, {
                 username: username,
                 password: password,
-                name: name,
+                fullName: name,
+                sex: sex,
                 phoneNumber: phoneNumber,
                 email: email,
-                dateOfBirth: dateOfBirth,
-                address: address
+                birth: dateOfBirth,
+                address: address,
+                level: user.level
             })
             .then((res) => {
                 console.log(res.data);
-                alert("Cập nhật thông tin thành công!");
-                navigate("/user/info");
-                localStorage.setItem("accessToken", JSON.stringify(res.data.data));
+                if (!formIsValid) {
+                    alert("Hãy điền đủ thông tin!");
+                } else {
+                    alert("Cập nhật thông tin thành công!");
+                    localStorage.setItem("accessToken", JSON.stringify(res.data.data));
+                }
+
             })
             .catch((error) => console.log(error)
             );
     };
-    
+
     return (
         <Container>
             <div className="flex-row">
@@ -143,7 +153,7 @@ function EditUserInfo() {
                     <Form className="row mt-3 " onSubmit={handleSubmit}>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Tên đăng nhập</Form.Label>
-                            <Form.Control type="text" value={user.username} onChange={(e) => setUsername(e.target.value)} />
+                            <Form.Control type="text" defaultValue={user.username} readOnly />
                             <small className="text-danger form-text">
                                 {usernameError}
                             </small>
@@ -162,23 +172,30 @@ function EditUserInfo() {
                                 {nameError}
                             </small>
                         </Form.Group>
+                        <Form.Group className="col-md-12 mb-3 blog-checkbox">
+                            <Form.Label>Giới tính: </Form.Label>
+                            <div className="d-flex">
+                                <Form.Check className="me-3" type="radio" defaultValue={user.sex ? true : false} label="Nam" />
+                                <Form.Check className="me-3" type="radio" defaultValue={user.sex ? false : true} label="Nữ" />
+                            </div>
+                        </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Số điện thoại</Form.Label>
-                            <Form.Control type="number" defaultValue={user.phoneNumber}  onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <Form.Control type="number" defaultValue={user.phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                             <small className="text-danger form-text">
                                 {phoneNumberError}
                             </small>
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" defaultValue={user.email}  onChange={(e) => setEmail(e.target.value)} />
+                            <Form.Control type="email" defaultValue={user.email} readOnly />
                             <small className="text-danger form-text">
                                 {emailError}
                             </small>
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Ngày sinh</Form.Label>
-                            <Form.Control type="date" defaultValue={user.birth}  onChange={(e) => setDateOfBirth(e.target.value)} />
+                            <Form.Control type="date" defaultValue={user.birth} onChange={(e) => setDateOfBirth(e.target.value)} />
                             <small className="text-danger form-text">
                                 {dateOfBirthError}
                             </small>
