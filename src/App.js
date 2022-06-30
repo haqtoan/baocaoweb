@@ -38,7 +38,7 @@ function App() {
 
         <Route path='/chi-tiet-dich-vu' element={<ServiceDetail />} />
 
-        <Route path='/user/info' element={<UserInfo />} />
+        <Route path='/user/info/*' element={<UserInfo />} />
 
         <Route path='/user/info/edit' element={<EditUserInfo />} />
 

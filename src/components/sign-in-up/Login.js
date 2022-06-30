@@ -53,7 +53,7 @@ function Login() {
 
                 } else {
                     navigate("/");
-                    localStorage.setItem("accessToken", JSON.stringify(res.data.data))
+                    localStorage.setItem("accessToken", JSON.stringify(res.data.data));
                 }
             })
             .catch((err) =>console.log(err));
