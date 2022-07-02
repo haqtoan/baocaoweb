@@ -154,7 +154,7 @@ function EditDoctorInfo() {
                     <Form className="row mt-3 " onSubmit={handleSubmit}>
                         <Form.Group className="col-md-12 mb-3" >
                             <Form.Label>Tên đăng nhập</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setUsername(e.target.value)} />
+                            <Form.Control type="text" onChange={(e) => setUsername(e.target.value)} readOnly />
                             <small className="text-danger form-text">
                                 {usernameError}
                             </small>
@@ -196,7 +196,7 @@ function EditDoctorInfo() {
                         </Form.Group>
                         <Form.Group className="col-md-12 mb-3">
                             <Form.Label>Ngày sinh</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setDateOfBirth(e.target.value)} />
+                            <Form.Control type="date" onChange={(e) => setDateOfBirth(e.target.value)} />
                             <small className="text-danger form-text">
                                 {dateOfBirthError}
                             </small>
