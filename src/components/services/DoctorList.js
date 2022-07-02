@@ -5,7 +5,6 @@ import axios from "axios";
 
 function DoctorList() {
     const [doctors, setDoctors] = useState([]);
-    const [doctorId, setDoctorId] = useState("");
 
     const doctorInfo = () => {
         axios
@@ -15,14 +14,6 @@ function DoctorList() {
                 setDoctors(res.data.data);
             })
             .catch((error) => console.log(error));
-    }
-
-    const getDoctorId = (id) => {
-        axios
-        .get(`http://localhost:8084/User/GetDoctorById/${id}`)
-        .then((res) => {
-            setDoctorId(res.data.data.id);
-        })
     }
 
     useEffect(() => {
@@ -77,7 +68,7 @@ function DoctorList() {
                                         </div>
                                         <div className="btn-footer">
                                             <Button className="w-100 d-flex align-items-center justify-content-center btn-footer-card" >
-                                                <Link to={"/bac-si/chi-tiet/"+doctor.id} onClick={() => setDoctorId()}>
+                                                <Link to={`detail/${doctor.id}`}>
                                                     <span>Đặt khám</span>
                                                 </Link>
                                             </Button>

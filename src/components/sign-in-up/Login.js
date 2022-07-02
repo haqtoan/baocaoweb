@@ -40,7 +40,7 @@ function Login() {
         handleValidation();
         console.log(username + " " + password);
         axios
-            .post('http://localhost:8084/User/login', {
+            .post('http://localhost:8084/api/auth/login', {
                 userName: username,
                 password: password
             })

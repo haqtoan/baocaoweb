@@ -12,15 +12,8 @@ function AppHeader() {
         navigate("/")
     }
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("accessToken"));
-        if(user){
-            setUser(user);
-        }
-    }, []);
-
-    const haveName = ()=>{
-        if(!user.fullName){
+    const haveName = () => {
+        if (!user.fullName) {
             return user.username;
         } else {
             return user.fullName;
@@ -37,16 +30,33 @@ function AppHeader() {
             )
         }
         else {
-            return (
-                <NavDropdown title={"Xin chào, " + haveName()} id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="/user/info">Thông tin cá nhân</NavDropdown.Item>
-                    <NavDropdown.Item href="/user/calendar">Lịch sử đặt khám</NavDropdown.Item>
-                    <NavDropdown.Item href="/user/health">Hồ sơ sức khỏe</NavDropdown.Item>
-                    <NavDropdown.Item onClick={logout}>Đăng xuất</NavDropdown.Item>
-                </NavDropdown>
-            )
+            if (user.role === "User") {
+                return (
+                    <NavDropdown title={"Xin chào, " + haveName()} id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="/user/info">Thông tin cá nhân</NavDropdown.Item>
+                        <NavDropdown.Item href="/user/calendar">Lịch sử đặt khám</NavDropdown.Item>
+                        <NavDropdown.Item href="/user/health">Hồ sơ sức khỏe</NavDropdown.Item>
+                        <NavDropdown.Item onClick={logout}>Đăng xuất</NavDropdown.Item>
+                    </NavDropdown>
+                )
+            } else {
+                return (
+                    <NavDropdown title={"Xin chào, " + haveName()} id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="/doctor/info">Thông tin cá nhân</NavDropdown.Item>
+                        <NavDropdown.Item href="/doctor/calendar">Lịch khám trong ngày</NavDropdown.Item>
+                        <NavDropdown.Item onClick={logout}>Đăng xuất</NavDropdown.Item>
+                    </NavDropdown>
+                )
+            }
         }
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("accessToken"));
+        if (user) {
+            setUser(user);
+        }
+    }, []);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light">
@@ -60,10 +70,10 @@ function AppHeader() {
                     </Nav>
                     <Nav>
                         <Nav.Link href="/">Trang chủ</Nav.Link>
-                        <Nav.Link eventKey={2} href="/bac-si">
+                        <Nav.Link eventKey={2} href="doctor">
                             Bác sĩ
                         </Nav.Link>
-                        <Nav.Link eventKey={2} href="/dich-vu">
+                        <Nav.Link eventKey={2} href="service">
                             Dịch vụ
                         </Nav.Link>
                         {isLogin()}
