@@ -50,8 +50,8 @@ function AppHeader() {
             } else {
                 return (
                     <NavDropdown title={"Xin chào, Admin"} id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="/doctor/info">Thông tin cá nhân</NavDropdown.Item>
-                        <NavDropdown.Item href="/admin">Khu quản trị</NavDropdown.Item>
+                        <NavDropdown.Item href="/user/info">Thông tin cá nhân</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin">Quản trị</NavDropdown.Item>
                         <NavDropdown.Item onClick={logout}>Đăng xuất</NavDropdown.Item>
                     </NavDropdown>
                 )
@@ -64,7 +64,9 @@ function AppHeader() {
         if (user) {
             setUser(user);
         }
-    }, []);
+        isLogin();
+        haveName();
+    });
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light">
