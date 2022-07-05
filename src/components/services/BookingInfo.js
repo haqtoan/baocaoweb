@@ -16,15 +16,14 @@ function BookingInfo() {
 
         axios
             .post(`http://localhost:8084/TimeOder/createTimeOder/${user.id}/${id}`, {
-                time: bookInfo.day + "T" + bookInfo.hour,
-                time_oder: bookInfo.day + "T" + bookInfo.hour,
+                time: bookInfo.day + "T" + bookInfo.hour+"Z",
                 symptom: symptom
             })
             .then((res) => {
                 console.log(res.data);
                 localStorage.removeItem("bookingInfo");
                 alert("Đặt lịch thành công")
-                // navigate("/")
+                navigate("/doctor")
             })
             .catch((error) => console.log(error)
             );
